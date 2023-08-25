@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写实现instanceof</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+  // 实现myInstanceof  功能类似 instanceof
+  // instanceof:  [] instanceof Array ==> true
+  // myInstanceof:  myInstanceof([],Array) ==> true
+  function myInstanceof (child, ancestor) {
+    let childP = child.__proto__;
+    let ancestorP = ancestor.prototype;
+
+    // 如果不为null，可进行一直向上查找
+    while (childP) {
+      if (childP === ancestorP) {
+        return true;
+      }
+      childP = childP.__proto__;
+    }
+
+    // 循环完找到顶层null都没匹配到，匹配失败
+    return false
+  }
+
+  // 测试一下：
+  // console.log(myInstanceof([], Array))
+  // console.log(myInstanceof({}, Object))
+
+  function Foo (b) {
+    this.a = 1;
+    this.b = b
+  }
+  let test = new Foo(2);
+  console.log(test instanceof Foo);
+  console.log(myInstanceof(test, Foo));
+</script>

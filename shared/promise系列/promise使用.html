@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./promise封装ajax_get.js"></script>
+</head>
+
+<body>
+  <input type="button" value="点击发送get请求">
+  <script>
+    document.querySelector('input').addEventListener('click', () => {
+      sendAjaxGet('http://127.0.0.1:777').then(res => {
+        console.log('success：', res)
+      }, err => {
+        console.log('error', err)
+      })
+    })
+  </script>
+</body>
+
+</html>

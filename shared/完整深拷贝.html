@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完整的深拷贝方法</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    // 是否是对象
+    function isObj(param) {
+        return Object.prototype.toString.call(param) === '[object Object]'
+    }
+    // 是否数组
+    function isArray(param) {
+        return param instanceof Array;
+    }
+    // 是否Map
+    function isMap(param) {
+        return Object.prototype.toString.call(param) === '[object Map]'
+    }
+    // 不是数组也不是对象
+    function notReference(param) {
+        return !isArray(param) && !isObj(param) && !isMap(param);
+    }
+
+    // 深拷贝
+    function deepClone(param) {
+        if (notReference(param)) return param;
+        if (isArray(param)) {
+            let arr = [];
+            for (let [index, value] of param.entries()) {
+                arr[deepClone(index)] = deepClone(value)
+            }
+            return arr
+        }
+        if(isMap(param)){
+            let map = new Map();
+            for (let [index, value] of param.entries()) {
+                map.set(index,deepClone(value))
+            }
+            return map
+        }
+        if (isObj(param)) {
+            let obj = {};
+            for (key in param) {
+                if (param.hasOwnProperty(key)) {
+                    obj[key] = deepClone(param[key])
+                }
+            }
+            return obj
+        }
+    }
+
+    // 测试对象
+    var keyObj = {a:3};
+    const obj = {
+        // 基本数据类型 String、Number、Null、undefined、Boolean
+        str: 'string', // String
+        num: 123, // Number
+        nul: null, // Null
+        und: undefined, // undefined
+        bol: false, // Boolean
+
+        // 引用数据类型 Object、Array、Function、
+        obj: {
+            author: '记忆似迷雾中的阴影',
+            platform: 'www.blibli.com'
+        },
+        arr: [
+            [1, 2, 3],
+            { arr: 'obj' }
+        ],
+        func(){
+            console.log(32)
+        },
+        map:new Map().set(keyObj,123)
+    };
+
+    const copy = deepClone(obj);
+
+
+    console.log(obj, copy)
+    console.log(obj === copy)
+</script>

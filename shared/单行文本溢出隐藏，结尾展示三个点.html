@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>单行文本溢出处理</title>
+  <style>
+    body {
+      background-color: black;
+      color: white
+    }
+
+    h1 {
+      border: 1px solid red;
+      width: 200px;
+      /* 不换行 */
+      white-space: nowrap;
+      /* 超出隐藏 */
+      overflow: hidden;
+      /* 结尾展示 ... */
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+
+<body>
+  <p>对以下文本做单行文本超出部分进行隐藏，并展示为...</p>
+  <h1>“魔鬼”的步伐！台风“杜苏芮”路径拐了个直角</h1>
+</body>
+
+</html>

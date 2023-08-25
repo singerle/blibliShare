@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数节流</title>
+</head>
+
+<body>
+  <button id="btn">按钮</button>
+</body>
+
+</html>
+
+<script>
+  // 函数节流 （执行一次后，一定时间内不再触发执行）
+  // 生活场景举例：游戏技能cd，按技能不生效，必须cd好了，技能按键才能生效
+  // 实现思路：设置节流阀，决定是否可执行。
+  function myThrottle (fn, delay) {
+    let flag = true;
+    return () => {
+      if (flag) {
+        flag = false;
+        fn();
+        setTimeout(() => {
+          flag = true;
+        }, delay)
+      }
+    }
+  }
+
+  btn.onclick = myThrottle(() => {
+    console.log('已执行！')
+  }, 2000)
+</script>

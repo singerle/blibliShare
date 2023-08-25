@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div>
+    视图一数据：<input id="input1">
+  </div>
+  <div>
+    视图二数据：<input id="input2">
+  </div>
+
+  <script>
+    // bus.subscribe('lixin', (val) => {
+    //   console.log(val)
+    // })
+
+    // bus.publish('lixin', '手机')
+    let obj = {};
+    mountData({
+      data: obj,
+      key: 'first',
+      target: 'input1',
+      selector: '#input1'
+    })
+    mountData({
+      data: obj,
+      key: 'second',
+      target: 'input2',
+      selector: '#input2'
+    })
+  </script>
+</body>
+
+</html>

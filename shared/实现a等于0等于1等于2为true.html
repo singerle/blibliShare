@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+  // 如何做才能打印 'hello world！'？
+  var thanks = 'hello world！';
+  var a = {
+    value: 0,
+    toString () {
+      return a.value++;
+    }
+  }
+  if (a == 0 && a == 1 && a == 2) {
+    console.log(thanks)
+  }
+  // 总结：
+    // ==时，会先调用toString方法得到的返回值进行比较。
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原生ajax实现get和post</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+  let ajax = {
+    get: (url, fn) => {
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            fn(xhr.response)
+          }
+        }
+      }
+      xhr.send()
+    },
+    post: (url, data, fn) => {
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', url);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            fn(xhr.response)
+          }
+        }
+      }
+      xhr.send(data)
+    }
+  }
+  ajax.get('http://127.0.0.1:7777/', (res) => {
+    console.log(res)
+  })
+  ajax.post('http://127.0.0.1:7777/', 'data', (res) => {
+    console.log(res)
+  })
+</script>

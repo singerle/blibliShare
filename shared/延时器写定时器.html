@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用延时器写定时器</title>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 50px auto 0;
+      width: 200px;
+      padding: 0;
+      text-align: center;
+    }
+
+    li {
+      line-height: 1.5;
+      padding: 3%;
+      margin-bottom: 10px;
+      cursor: pointer;
+      border: 1px solid #f40;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>点击背景色变 红</li>
+    <li>点击背景色变 橙</li>
+    <li>点击背景色变 黄</li>
+    <li>点击背景色变 绿</li>
+  </ul>
+</body>
+
+</html>
+
+<script>
+  // var count = 0;
+  // function go (fn) {
+  //   var a = setTimeout(() => {
+  //     count++;
+  //     console.log(count);
+  //     clearTimeout(a)
+  //     fn();
+  //     go(fn);
+  //   }, 1000)
+  // }
+  // go(fn)
+
+  function mySetInterval (fn, delay) {
+    var t = null;
+    var loop = () => {
+      fn();
+      t && clearTimeout(t);
+      t = setTimeout(loop, delay)
+    }
+    t = setTimeout(loop, delay);
+    return {
+      cancel: () => {
+        clearTimeout(t)
+      }
+    }
+  }
+
+  // 测试一下
+  var { cancel } = mySetInterval(() => { console.log('欢迎大家的观看！') }, 1000);
+  // 10秒后停止定时器
+  var tt = setTimeout(() => {
+    cancel();
+    clearTimeout(tt)
+  }, 10000)
+</script>

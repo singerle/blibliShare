@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简单版深拷贝</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+  function isOther (val) {
+    // 非对象和数组
+    return !isArr(val) && !isObj(val)
+  }
+  function isArr (arr) {
+    return arr instanceof Array;
+  }
+  function isObj (ob) {
+    return Object.prototype.toString.call(ob) === '[object Object]'
+  }
+  function deepClone (obj) {
+    if (isOther(obj)) return obj;
+    if (isArr(obj)) {
+      let arr = [];
+      obj.forEach(item => {
+        arr.push(deepClone(item))
+      });
+      return arr
+    }
+    if (isObj(obj)) {
+      let object = {};
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          object[key] = deepClone(obj[key])
+        }
+      }
+      return object
+    }
+  }
+
+  // 测试代码
+  let testObj = {
+    a: 1,
+    b: 'a',
+    c: [2, { d: 3 }],
+    d: {
+      e: 'e',
+      f: [4, 5, 6]
+    },
+    e: function () {
+      console.log(123)
+    },
+    f: undefined,
+    g: null
+  }
+  let coloneObj = deepClone(testObj);
+  coloneObj.c[1].d = 100;
+  console.log('testObj : ', testObj)
+  console.log('coloneObj : ', coloneObj)
+</script>

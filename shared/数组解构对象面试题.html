@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>将对象数据用数组解构赋值，如何不报错？</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+  // // 如何让下面代码正常执行？
+  // let [a, b, c] = { a: 1, a: 2, c: 3 };
+  // Object.prototype[Symbol.iterator] = function () {
+  //   return Object.values(this)[Symbol.iterator]()
+  // }
+  Object.prototype[Symbol.iterator] = function () {
+    return [][Symbol.iterator].call(Object.values(this))
+  }
+  let [a, b, c] = { a: 1, b: 2, c: 3 };
+  console.log(a, b, c) // 1 2 3
+</script>

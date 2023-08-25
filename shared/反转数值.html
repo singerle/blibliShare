@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>将数值反转</title>
+</head>
+
+<body>
+  <input type="number">
+  <input type="button" value="点击反转数值">
+  <input type="text">
+</body>
+
+</html>
+
+<script>
+  let oInputs = document.getElementsByTagName('input');
+  oInputs[1].onclick = function () {
+    oInputs[2].value = reverseNum(oInputs[0].value)
+  }
+  function reverseNum (num) {
+    let res = String(num).trim().split('').reverse();
+    if (num < 0) {
+      res.unshift(res.pop())
+    }
+    return res.join("")
+  }
+</script>

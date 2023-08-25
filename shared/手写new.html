@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写实现new</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+  function myNew (fn, ...arg) {
+    // 1、创建一个object
+    let obj = {};
+    // 2、将新创建的object的原型链__proto__指向构造函数的原型prototype；
+    obj.__proto__ = fn.prototype;
+    // 3、执行构造函数fn，且this指向新创建的这个object；
+    let fnRes = fn.apply(obj, arg);
+    // 4、如果构造函数fn自己返回对象，那么使用它自己发返回值，否则就返回构造对象object；
+    return Object.prototype.toString.call(fnRes) === '[object Object]' ? fnRes : obj;
+  }
+</script>

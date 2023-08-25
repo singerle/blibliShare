@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数调用实现任意多个数据相加</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+  // 写一个函数add 满足如下需求
+  // add(1)(2)(3)() = 6
+  // add(1, 2, 3)(4)() = 10
+  function add (...arg) {
+    let res = 0;
+    function loop (...args) {
+      if (args.length) {
+        res += args.reduce((pre, cur) => pre + cur)
+        return loop
+      }
+      return res;
+    }
+    return loop(...arg)
+  }
+  console.log(add(1)(2)(3)())
+  console.log(add(1, 2, 3)(4)())
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实现a标签一样的功能</title>
+  <style>
+    body {
+      text-align: center;
+      font-size: 48px;
+    }
+
+    aaa {
+      text-decoration: underline;
+      cursor: pointer
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p>
+      <a href="http://sohu.com" target="">a标签</a>
+    </p>
+    <p>
+      <aaa href="http://sohu.com">aaa标签</aaa>
+    </p>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+  // 实现aaa标签 和 a标签一样的跳转功能
+  let oAaa = document.getElementsByTagName('aaa')[0];
+  let aaaHref = oAaa.getAttribute('href');
+  oAaa.onclick = () => {
+    // // 实现一：location.href 属性
+    // location.href = aaaHref;
+    // 实现二： window.open 方法
+    window.open(aaaHref, '_self')
+  }
+</script>

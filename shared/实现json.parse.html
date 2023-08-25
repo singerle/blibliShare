@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实现json.parse</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+  function parse (data) {
+    return eval("(" + data + ")")
+  }
+  var a = parse("[12,3,4,{a:3,b:[23]}]")
+  console.log(a[3].b[0])
+</script>

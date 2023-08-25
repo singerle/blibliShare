@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN" theme="themeA">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>皮肤切换功能实现</title>
+  <style>
+    [theme=themeA] {
+      --background-color: #008c8c;
+      --font-size: 30px;
+      --color: pink;
+      --font-bold: bold
+    }
+
+    [theme=themeB] {
+      --background-color: #bfc;
+      --font-size: 15px;
+      --color: #111;
+      --font-bold: bold
+    }
+
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: var(--background-color);
+      font-weight: var(--font-bold);
+      color: var(--color);
+      font-size: var(--font-size);
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="change('themeA')">皮肤一</button>
+  <button onclick="change('themeB')">皮肤二</button>
+  <div>
+    测试一下
+  </div>
+  <span style="background-color: var(--background-color);">span元素</span>
+</body>
+<script>
+  function change (val) {
+    document.documentElement.setAttribute('theme', val)
+  }
+</script>
+
+</html>

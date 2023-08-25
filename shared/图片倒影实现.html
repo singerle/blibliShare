@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片倒影</title>
+  <style>
+    div {
+      position: relative;
+      height: 200px;
+      width: 200px;
+      background: url(../images/加菲猫.png) no-repeat;
+      background-size: cover;
+    }
+
+    div::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      bottom: -100%;
+      left: 0;
+      right: 0;
+      background: inherit;
+      transform: rotateX(180deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <!-- 49个号码 -->
+  <!-- 选7个 最后一个是特-->
+  <!-- C(48, 11) / C(49, 12) -->
+</body>
+
+</html>

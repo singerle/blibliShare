@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数防抖</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+  // 函数防抖 myDebounce
+  function myDebounce (fn, delay) {
+    let timeout = null;
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+      timeout = setTimeout(() => {
+        fn();
+        clearTimeout(timeout)
+      }, delay)
+    }
+  }
+
+  window.onresize = myDebounce(() => {
+    console.log('感谢大家支持，3连是我最大的创作动力！')
+  }, 1000)
+</script>
