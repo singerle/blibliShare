@@ -40,17 +40,25 @@ console.log(23 + [23,23]) // 2323,23
 console.log(undefined + []) // NaN  + '' ==> 'NaN'
 
 
-// let obj = {
-//   valueOf:function(){
-//     return {}
-//   },
-//   toString:function(){
-//     return []
-//   }
-// }
-
 // [] + {}   ===>  '' + '[object Object]' ==> '[object Object]'
 
 // {}+[]  ===> +[] ==> +"" ==> 0
 
 // +单带一个数据 做隐式数据转化  将后面这个表达式的结果转化为数值类型
+
+// +运算三个功能场景
+// 1、算术加法运算
+// 2、字符串拼接
+// 3、Number的隐式转换
+
+
+let obj = {
+  valueOf:()=>{
+    return {}
+  },
+  toString:()=>{
+    return []
+  }
+}
+
+obj + 1
