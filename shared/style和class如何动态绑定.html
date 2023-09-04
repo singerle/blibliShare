@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>感谢大家的关注</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .singerle {
+      background-color: aqua;
+      color: black;
+    }
+
+    .abc {
+      border: 1px solid yellow;
+    }
+  </style>
+  <script src="./modules/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div :style="{color:styleColor,backgroundColor:'#fff'}">对象写法动态绑定style</div>
+    <div :style="[union,{border:'1px solid blue'},{color:'#ff'}]">数组写法动态绑定style</div>
+    <div :class="{singerle:flag,abc:true}">对象形式动态绑定class</div>
+    <div :class="['abc',{singerle:flag}]">对象形式动态绑定class</div>
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: () => ({
+        styleColor: 'red',
+        union: { color: 'pink', backgroundColor: '#000' },
+        flag: true
+      })
+    })
+  </script>
+</body>
+
+</html>
