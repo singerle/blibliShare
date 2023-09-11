@@ -10,36 +10,36 @@
 
 <body>
   <div id="app">
-    <!-- <div id="content">
+    <div id="content">
       <p>姓名：{{name}}</p>
       <p>性别：{{sex}}</p>
-    </div> -->
+    </div>
   </div>
 
   <script>
     let vm = new Vue({
-      el: '#app', 
-      // template: `
-      // <div id="app">
-      //   <div id="content">
-      //     <p>姓名：{{name}}</p>
-      //     <p>性别：{{sex}}</p>
-      //   </div>
-      // </div>
-      // `,
+      el: '#app',
+      template: `
+      <div id="app">
+        <div id="content">
+        <p>姓名：{{name}}</p>
+        <p>性别：{{sex}}</p>
+      </div>
+    </div>`,
       data: () => ({
         name: 'singerle',
         sex: '中'
       }),
       render(h){
-        // h 元素，元素的属性，元素的内容
-        return h('div',{attrs:{
-          id:'app',
-
-        }},[
-          h('div',{attrs:{
+        return h('div',{
+          attrs:{
+            id:'app'
+          }
+        },[h('div',{
+          attrs:{
             id:'content'
-          }},[h('p',{},`姓名：${this.name}`),h('p',{},`性别：${this.sex}`)]),])
+          }
+        },[h('p',{},`姓名：${this.name}`),h('p',{},`性别：${this.sex}`)])])
       }
     })
   </script>
