@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>欢迎，喜欢的点一下关注。谢谢支持！</title>
+</head>
+<body>
+  <div id="root">
+    <div class="first">
+      <span>文本1</span>
+      <span>文本2</span>
+      <span>文本3</span>
+    </div>
+    <p>
+      <a href="#">跳转a</a>
+    </p>
+    <div>
+      <span>文本4</span>
+      <span>文本5</span>
+      <span>文本6</span>
+    </div>
+  </div>
+
+  <script>
+    function domTagToObj (dom){
+      if(!(dom instanceof Element)){return null}
+      let obj = {};
+      obj.tag = dom.tagName?.toLowerCase();
+      obj.children = [...dom.childNodes].reduce((pre,cur)=>{
+        cur.tagName && pre.push(domTagToObj(cur))
+        return pre;
+      },[])
+      return obj;
+    }
+    console.log(domTagToObj(root))
+  </script>
+</body>
+</html>
