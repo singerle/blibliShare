@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分享视频不易，谢谢关注！</title>
+</head>
+
+<body>
+  <div>欢迎关注！</div>
+  <div id="main">关注是对我个人的鼓励，谢谢！</div>
+  <script>
+    window.onload = function () {
+      console.log(document.querySelector('div'))
+    }
+    function addEventOnload(func,...args){
+      let oldOnload = window.onload;
+      window.onload = function(){
+        if(typeof oldOnload === 'function') oldOnload();
+        func.apply(this,args)
+      }
+    }
+
+    function addA(a,b,c){
+      console.log(a,b,c)
+    }
+
+    function addB(){
+      console.log(document.querySelector('#main'))
+    }
+    addEventOnload(addA,1,2,3)
+    addEventOnload(addB)
+  </script>
+</body>
+
+</html>
