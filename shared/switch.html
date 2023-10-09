@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>感谢大家的观看和支持。</title>
+</head>
+
+<body>
+    <input type="text">
+    <p>
+        <input type="button" onclick="transfer()" value="点击输出中文大写"></input>
+    </p>
+    <p id="showNum"></p>
+
+
+    <script>
+        function getResult(num) {
+            // switch里的case 后面对应的值和num的数据类型要完全一致
+            let res;
+            switch (num) {
+                case '0':
+                    res = '零';
+                    // break;
+                case '1':
+                    res = '壹';
+                    break;
+                case '2':
+                    res = '贰';
+                    break;
+                case '3':
+                    res = '叁';
+                    break;
+                case '4':
+                    res = '肆';
+            }
+            return res
+        }
+        function transfer() {
+            let oInput = document.querySelector('input')
+            showNum.innerHTML = getResult(oInput.value)
+        }
+    </script>
+</body>
+
+</html>
