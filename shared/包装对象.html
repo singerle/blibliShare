@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js三种原始数据的包装对象</title>
+</head>
+<body>
+    欢迎关注
+    <script>
+        let str = '欢迎大家观看';
+        let num = 123456;
+        let bool = true;
+
+        // String、Number、Boolean 三个字面量声明的数据类型存在包装对象的概念
+
+        console.log(str.length)
+        str.length = 10;
+        console.log(str.length)
+
+        console.log(typeof num.toString())
+        num.toString = () => 1
+        console.log(num.toString())
+
+        function foo(){
+            console.log(this)
+        }
+        foo.call(num)
+    </script>
+</body>
+</html>
