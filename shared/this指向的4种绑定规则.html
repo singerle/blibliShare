@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喜欢可以关注一下，谢谢支持！</title>
+</head>
+<body>
+    <h1>this指向问题</h1>
+    <p>感谢关注！</p>
+    <p>搞定this指向，先搞定它的绑定规则</p>
+    <script>
+        // this指向的4种绑定规则（现代浏览器中非严格模式）
+        // 1、默认绑定（指向window）函数独立调用
+        // 2、隐式绑定 (指向最后调用的那个对象) 对象的属性来调用
+        // 3、call、apply、bind显示绑定 （this绑定到对应的第一个参数对象上，没有则指向window）
+        // 4、new （指向 返回的这个实例对象）
+
+        // // this的存在意义，函数调用执行时。执行上下文
+        // function foo(){
+        //     console.log(this)
+        // }
+        // // foo()
+
+        // function bar(){
+        //     foo()
+        // }
+        // bar()
+
+        // 对象属性的方式调用访问
+        let name = 'tony';
+        let obj = {
+            name:'blibli',
+            sayName:function(){
+                // console.log(this)
+                console.log(this.name)
+            }
+        }
+
+        // obj.sayName() //  obj
+
+        // // 隐式绑定丢失 情况1
+        // let sayName = obj.sayName;
+        // sayName() // window
+
+        // // 隐式绑定丢失 情况2 对象属性方式 将函数作为实参传入另一个函数并调用
+        // function baz(callback){
+        //     callback()
+        // }
+        // baz(obj.sayName)  // window
+        
+
+        // 显式修改this指向 call、apply、bind
+        
+        function go(){
+            // this.name = 'blibli'
+            console.log(this)
+        }
+        // go.call(obj)
+        // go.apply(1) // Number包装对象
+        // go.bind(obj)()
+
+        // bind连续多次绑定，只有第一次会生效
+        let obj2 = {
+            name:'test'
+        }
+        go.bind(obj).bind(obj2)()
+
+        // new 实例对象本身
+        // new go()
+
+    </script>
+</body>
+</html>
