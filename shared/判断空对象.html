@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎关注</title>
+</head>
+
+<body>
+    感谢陪伴和关注
+</body>
+
+</html>
+
+
+<script>
+    // 这里探讨的空对象解释说明：没有自有属性的对象
+    let obj = {
+        // a: undefined,
+        // b: () => {
+        //     return 1
+        // }
+    }
+    obj[Symbol('a')] = 'SymbolA'
+    Object.defineProperty(obj, 'c', {
+        value: 2,
+        enumerable: false // 不可枚举
+    })
+
+    // 构造函数
+    function Foo() {
+        // this.name = '小李'
+    }
+    Foo.prototype.sex = 'man'
+    let fooObj = new Foo();
+    console.log(fooObj)
+
+
+
+
+    // 法一：判断JSON.stringify后等于字符串"{}"
+    // 局限性：
+    // 1、忽略属性值为undefined、function
+    // 2、属性名为Symbol类型会被忽略。
+    // 3、不可枚举属性也会被忽略。
+
+    console.log("法一：JSON.stringify", JSON.stringify(obj), JSON.stringify(obj) === "{}")
+
+    console.log("法一：JSON.stringify构造对象", JSON.stringify(fooObj), JSON.stringify(fooObj) === "{}")
+
+    // 法二：for in遍历对象 (继承、可枚举自有属性)
+    // 局限性：属性为Symbol类型会被忽略，不可遍历类型的属性无法被遍历出来
+    // function isNullObj(tag) {
+    //     for (let key in tag) {
+    //         if (tag.hasOwnProperty(key)){
+    //             return false
+    //         }
+    //     }
+    //     return true
+    // }
+
+    // 无局限性的for in
+    function isNullObj(tag) {
+        if (Object.getOwnPropertyNames(tag).length || Object.getOwnPropertySymbols(tag).length) {
+            return false
+        }
+        return true
+    }
+    console.log('法二：for in', isNullObj(obj))
+
+    console.log('法二：for in构造对象', isNullObj(fooObj))
+
+    // 法三：Object.keys() 判断长度为0
+    // 局限性：属性为Symbol类型会被忽略，不可枚举类型的属性无法被遍历出来
+    console.log('Object.keys', Object.keys(obj), Object.keys(obj).length === 0)
+
+    // 法四：Object.getOwnPropertyNames()  判断长度为0
+    // 属性为Symbol类型会被忽略
+    console.log('Object.getOwnPropertyNames', Object.getOwnPropertyNames(obj), Object.getOwnPropertyNames(obj).length === 0)
+
+    // 法五：Reflect.ownKeys()  判断长度为0
+    // 近乎完美，不可枚举属性、symbol类型属性，都会被返回
+
+    console.log('Reflect.ownKeys', Reflect.ownKeys(obj), Reflect.ownKeys(obj).length === 0)
+
+
+
+    // 相关知识点：
+    Object.keys(obj) // 返回obj的属性名组成的数组
+    Object.getOwnPropertyDescriptor(obj, 'a') // 查看对象上某个属性或者方法的具体属性内容
+    obj.hasOwnProperty('a')  // 检测属性a是否时obj对象的自有属性
+    Object.getOwnPropertyNames(obj) // 返回自有属性的数组
+    Object.getOwnPropertySymbols(obj) // 返回obj对象中Symbol类型属性名形成的数组
+    Reflect.ownKeys(obj) // 返回自有属性（包含Symbol类型作为属性）组成的数组
+</script>
