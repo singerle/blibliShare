@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-if和v-for优先级</title>
+  <script src="./modules/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>欢迎关注！</div>
+    <input type="button" @click="setComponent('组件---点赞')" value="点赞">
+    <input type="button" @click="setComponent('组件---收藏')" value="收藏">
+    <input type="button" @click="setComponent('组件---投币')" value="投币">
+    <component :is="content"></component>
+  </div>
+  <script>
+
+    let vm = new Vue({
+      el: '#app',
+      data () {
+        return {
+          content: ''
+        }
+      },
+      methods: {
+        setComponent (message) {
+          // 创建Vue组件对象
+          this.content = Vue.component('my-component', {
+            template: '<div>{{ message }}</div>',
+            data: function () {
+              return {
+                message
+              };
+            }
+          });
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
