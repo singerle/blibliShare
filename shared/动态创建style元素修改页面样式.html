@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态创建style</title>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <style>
+    .main a:hover {
+      color: pink;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main" class="main">
+    感谢各位大佬光临
+    <hr/>
+    <a href="#">您的关注是我持续创作的动力</a>
+  </div>
+  <script>
+    // jquery方式无法直接修改伪类
+    // $('.main a').hover(function (params) {
+    //   $(this).css('color', 'red')
+    // },function (params) {
+    //   $(this).css('color', '')
+    // })
+
+    // 动态创建style元素，修改样式
+    let oStyle = document.createElement('style');
+    oStyle.innerHTML = 
+    `
+      #main a:hover {
+        color:greenyellow
+      }
+    `
+    document.head.appendChild(oStyle)
+  </script>
+</body>
+
+</html>
