@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串转DOM节点</title>
+</head>
+<body>
+</body>
+</html>
+
+
+
+<script>
+  let htmlString =
+    `
+  <div class="content">
+    <span style="color:red;">欢迎关注！</span>
+    <h2>欢迎点赞！</h2>
+  </div>
+  <p>欢迎收藏!</p>
+  `;
+
+  // 法一：
+  const range = document.createRange();
+  const fragment1 = range.createContextualFragment(htmlString);
+  console.log(fragment1)
+  // document.body.append(fragment1)
+
+  // 法二：
+  const template = document.createElement('template');
+  template.innerHTML = htmlString;
+  const fragment2 = template.content;
+  console.log(fragment2)
+  // document.body.append(fragment2)
+
+  // 法三：
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlString, "text/html"); // 第2个参数为mimeType，可以为 text/html, text/xml, application/xml, application/xhtml+xml,image/svg+xml 等等这些
+  console.log(doc)
+  // 细分：如何加到对应的dom节点下
+  // 1、childNodes遍历：
+  // const nodes = doc.body;
+  // nodes.childNodes.forEach(item => document.body.append(item) )
+  // 2、增加一个根标签去获取
+  const addShell = `<div id="shell">${htmlString}</shell>`;
+  document.body.append(new DOMParser().parseFromString(addShell, "text/html").querySelector('#shell'))  
+</script>
